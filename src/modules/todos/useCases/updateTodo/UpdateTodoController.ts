@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { BaseController } from "../../../../shared/infra/http/models/Controller";
-import { TodoDTO } from "../../dtos/TodoDTO";
+import { BaseController } from "../../../../shared/infra/http/models/BaseController";
 import { UpdateTodoUseCase } from "./UpdateTodoUseCase";
-import httpStatus from "http-status";
+import { UpdateTodoRequestDTO } from "./UpdateTodoRequestDTO";
+import { TodoMapper } from "../../mappers/TodoMapper";
 
 export class UpdateTodoController extends BaseController {
   constructor(private useCase: UpdateTodoUseCase) {
@@ -11,15 +11,13 @@ export class UpdateTodoController extends BaseController {
 
   async executeImpl(request: Request, response: Response): Promise<void> {
     const { id } = request.params;
-    const todo: TodoDTO = request.body;
-
+    const dto: UpdateTodoRequestDTO = { id, ...request.body };
     // TODO sanitizations and validations
-
     try {
-      await this.useCase.execute({ ...todo, id });
-      response.status(httpStatus.OK).json("Updated OK");
-    } catch (err) {
-      console.log(err);
+      const updated = await this.useCase.execute(dto);
+      this.ok(response, TodoMapper.toDTO(updated));
+    } catch (err: any) {
+      this.fail(response, err ? err : "Unexpected error");
     }
   }
 }

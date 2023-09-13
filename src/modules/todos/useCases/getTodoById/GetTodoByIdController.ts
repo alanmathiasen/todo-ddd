@@ -1,9 +1,11 @@
 import { Request, Response } from "express";
-import { BaseController } from "../../../../shared/infra/http/models/Controller";
+import httpStatus from "http-status";
+import { Todo } from "../../domain/Todo";
 import { TodoDTO } from "../../dtos/TodoDTO";
 import { GetTodoByIdUseCase } from "./GetTodoByIdUseCase";
-import httpStatus from "http-status";
-import { TodoId } from "../../domain/TodoId";
+import { GetTodoByIdRequestDTO } from "./GetTodoByIdRequestDTO";
+import { BaseController } from "../../../../shared/infra/http/models/BaseController";
+import { TodoMapper } from "../../mappers/TodoMapper";
 
 export class GetTodoByIdController extends BaseController {
   constructor(private useCase: GetTodoByIdUseCase) {
@@ -11,18 +13,15 @@ export class GetTodoByIdController extends BaseController {
   }
 
   async executeImpl(request: Request, response: Response): Promise<void> {
-    const { id } = request.params;
-    const todoId = TodoId.create(id);
+    const dto: GetTodoByIdRequestDTO = {
+      id: request.params.id,
+    };
     // TODO sanitizations and validations
 
     try {
-      const todo = await this.useCase.execute(todoId);
-      const thisIsWrong = {
-        id: todo.getId().getValue(),
-        title: todo.getTitle().getValue(),
-        status: todo.status,
-      };
-      response.status(httpStatus.OK).json(thisIsWrong);
+      const todo: Todo = await this.useCase.execute(dto);
+      const todoResponse: TodoDTO = TodoMapper.toDTO(todo);
+      this.ok(response, todoResponse);
     } catch (err) {
       console.log(err);
     }

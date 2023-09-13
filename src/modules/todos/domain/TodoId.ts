@@ -1,13 +1,9 @@
-export class TodoId {
-  private readonly value: string;
+import { ValueObject } from "../../../shared/domain/ValueObject";
 
+export class TodoId extends ValueObject<string> {
   constructor(value: string) {
+    super(value);
     // add validation if needed
-    this.value = value;
-  }
-
-  public getValue(): string {
-    return this.value;
   }
 
   public static create(value: string): TodoId {

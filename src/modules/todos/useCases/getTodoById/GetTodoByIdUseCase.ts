@@ -1,15 +1,14 @@
 import { ITodoRepository } from "../../repos/ITodoRepository";
 import { Todo } from "../../domain/Todo";
 import { TodoId } from "../../domain/TodoId";
-import { TodoStatus } from "../../domain/TodoStatus";
-import { TodoTitle } from "../../domain/TodoTitle";
-import { TodoDTO } from "../../dtos/TodoDTO";
+import { UseCase } from "../../../../shared/core/UseCase";
+import { GetTodoByIdRequestDTO } from "./GetTodoByIdRequestDTO";
 
-export class GetTodoByIdUseCase {
+export class GetTodoByIdUseCase implements UseCase<GetTodoByIdRequestDTO, Todo> {
   constructor(private todoRepository: ITodoRepository) {}
 
-  async execute(todoId: TodoId): Promise<any> {
-    const todo = await this.todoRepository.findById(todoId);
+  async execute(request: GetTodoByIdRequestDTO): Promise<any> {
+    const todo = await this.todoRepository.findById(TodoId.create(request.id));
     return todo;
   }
 }

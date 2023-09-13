@@ -28,9 +28,7 @@ export class InMemoryTodoRepository implements ITodoRepository {
     const todo = this.todos.get(id.getValue());
     if (!todo) {
       // TODO this could be extracted, lets see that later with proper error handling
-      return Promise.reject(
-        new Error(`Todo with id ${id.getValue()} not found`)
-      );
+      return Promise.reject(new Error(`Todo with id ${id.getValue()} not found`));
     }
     return Promise.resolve(todo) as Promise<Todo>;
   }
