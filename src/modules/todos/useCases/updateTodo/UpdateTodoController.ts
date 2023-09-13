@@ -1,8 +1,10 @@
 import { Request, Response } from "express";
 import { BaseController } from "../../../../shared/infra/http/models/Controller";
-import { TodoDTO } from "../../dtos/TodoDTO";
 import { UpdateTodoUseCase } from "./UpdateTodoUseCase";
 import httpStatus from "http-status";
+import { TodoValidator } from "../../dtos/TodoValidator";
+import { TodoEventEmitter } from "../../domain/events/TodoEventEmitter";
+import { domainEventPublisher } from "../../infra/events/DomainEventPublisher";
 
 export class UpdateTodoController extends BaseController {
   constructor(private useCase: UpdateTodoUseCase) {
@@ -11,15 +13,19 @@ export class UpdateTodoController extends BaseController {
 
   async executeImpl(request: Request, response: Response): Promise<void> {
     const { id } = request.params;
-    const todo: TodoDTO = request.body;
-
-    // TODO sanitizations and validations
 
     try {
+      const todo = TodoValidator.sanitizeAndValidate(request.body);
       await this.useCase.execute({ ...todo, id });
+
+      // Raise a domain event
+      const event = new TodoEventEmitter(id);
+      domainEventPublisher.emit("Publish", event, "updated");
+
       response.status(httpStatus.OK).json("Updated OK");
     } catch (err) {
       console.log(err);
+      response.status(httpStatus.BAD_REQUEST).json("Invalid request body");
     }
   }
 }
