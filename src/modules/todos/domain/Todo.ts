@@ -1,35 +1,40 @@
 import { TodoId } from "./TodoId";
 import { TodoTitle } from "./TodoTitle";
-import { TodoStatus } from "./TodoStatus";
+import { TodoStatus, TodoStatusValues } from "./TodoStatus";
+import { Entity } from "../../../shared/domain/Entity";
+import { UniqueEntityID } from "../../../shared/domain/UniqueEntityID";
 
-export class Todo {
-  private id: TodoId;
-  private title: TodoTitle;
-  private status: TodoStatus;
+export interface TodoProps {
+  title: TodoTitle;
+  status: TodoStatus;
+}
 
-  constructor(id: TodoId, title: TodoTitle, status: TodoStatus) {
-    this.id = id;
-    this.title = title;
-    this.status = status;
+export class Todo extends Entity<TodoProps> {
+  constructor(props: TodoProps, id: UniqueEntityID) {
+    super(props, id);
   }
 
-  public getId(): TodoId {
-    return this.id;
+  public getId(): UniqueEntityID {
+    return TodoId.create(this._id).getValue();
   }
 
-  public getTitle(): TodoTitle {
-    return this.title;
+  get title(): TodoTitle {
+    return this.props.title;
   }
 
-  public getStatus(): TodoStatus {
-    return this.status;
+  get status(): TodoStatus {
+    return this.props.status;
   }
 
   public complete(): void {
-    this.status = TodoStatus.COMPLETED;
+    this.props.status = TodoStatus.create(TodoStatusValues.COMPLETED);
   }
 
   public reopen(): void {
-    this.status = TodoStatus.OPEN;
+    this.props.status = TodoStatus.create(TodoStatusValues.OPEN);
+  }
+
+  public static create(props: TodoProps, id: UniqueEntityID): Todo {
+    return new Todo(props, id);
   }
 }

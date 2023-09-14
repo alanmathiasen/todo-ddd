@@ -1,18 +1,26 @@
-export abstract class ValueObject<T> {
-  protected readonly value: T;
+interface ValueObjectProps {
+  [index: string]: any;
+}
 
-  constructor(value: T) {
-    this.value = value;
+/**
+ * @desc ValueObjects are objects that we determine their
+ * equality through their structrual property.
+ */
+
+export abstract class ValueObject<T extends ValueObjectProps> {
+  public props: T;
+
+  constructor(props: T) {
+    this.props = { ...props };
   }
 
-  public getValue(): T {
-    return this.value;
-  }
-
-  public equals(obj: ValueObject<T>): boolean {
-    if (obj === null || obj === undefined) {
+  public equals(vo?: ValueObject<T>): boolean {
+    if (vo === null || vo === undefined) {
       return false;
     }
-    return this.value === obj.value;
+    if (vo.props === undefined) {
+      return false;
+    }
+    return JSON.stringify(this.props) === JSON.stringify(vo.props);
   }
 }

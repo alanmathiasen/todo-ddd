@@ -1,6 +1,7 @@
 import { ITodoRepository } from "../ITodoRepository";
 import { Todo } from "../../domain/Todo";
 import { TodoId } from "../../domain/TodoId";
+import { UniqueEntityID } from "../../../../shared/domain/UniqueEntityID";
 
 export class InMemoryTodoRepository implements ITodoRepository {
   private todos: Map<string, Todo>;
@@ -10,25 +11,29 @@ export class InMemoryTodoRepository implements ITodoRepository {
   }
 
   async save(todo: Todo): Promise<void> {
-    this.todos.set(todo.getId().getValue(), todo);
+    this.todos.set(todo.getId().toString(), todo);
     return Promise.resolve();
   }
 
   async update(todo: Todo): Promise<Todo> {
-    const id = todo.getId().getValue();
+    const id = todo.getId().toString();
     if (!this.todos.has(id)) {
       // TODO this could be extracted, lets see that later with proper error handling
       return Promise.reject(new Error(`Todo with id ${id} not found`));
     }
     this.todos.set(id, todo);
-    return this.findById(todo.getId()) as Promise<Todo>;
+    return this.findById(
+      TodoId.create(new UniqueEntityID(id))
+    ) as Promise<Todo>;
   }
 
   async findById(id: TodoId): Promise<Todo> {
-    const todo = this.todos.get(id.getValue());
+    const todo = this.todos.get(id.getValue().toString());
     if (!todo) {
       // TODO this could be extracted, lets see that later with proper error handling
-      return Promise.reject(new Error(`Todo with id ${id.getValue()} not found`));
+      return Promise.reject(
+        new Error(`Todo with id ${id.getValue()} not found`)
+      );
     }
     return Promise.resolve(todo) as Promise<Todo>;
   }
@@ -38,7 +43,7 @@ export class InMemoryTodoRepository implements ITodoRepository {
   }
 
   async delete(id: TodoId): Promise<void> {
-    this.todos.delete(id.getValue());
+    this.todos.delete(id.getValue().toString());
     return Promise.resolve();
   }
 }

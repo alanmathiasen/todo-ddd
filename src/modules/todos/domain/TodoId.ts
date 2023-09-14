@@ -1,12 +1,20 @@
+import { UniqueEntityID } from "../../../shared/domain/UniqueEntityID";
 import { ValueObject } from "../../../shared/domain/ValueObject";
 
-export class TodoId extends ValueObject<string> {
-  constructor(value: string) {
-    super(value);
-    // add validation if needed
+export class TodoId extends ValueObject<{ value: UniqueEntityID }> {
+  private constructor(value: UniqueEntityID) {
+    super({ value });
   }
 
-  public static create(value: string): TodoId {
+  getStringValue(): string {
+    return this.props.value.toString();
+  }
+
+  getValue(): UniqueEntityID {
+    return this.props.value;
+  }
+
+  public static create(value: UniqueEntityID): TodoId {
     return new TodoId(value);
   }
 }
