@@ -28,4 +28,8 @@ export abstract class Entity<T> {
 
     return this._id.equals(object._id);
   }
+
+  get id(): UniqueEntityID {
+    return this._id;
+  }
 }

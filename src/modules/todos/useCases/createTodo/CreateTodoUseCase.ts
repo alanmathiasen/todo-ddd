@@ -13,7 +13,7 @@ export class CreateTodoUseCase implements UseCase<TodoDTO, void> {
   async execute(request: TodoDTO): Promise<void> {
     const title: TodoTitle = TodoTitle.create(request.title);
     const status: TodoStatus = TodoStatus.create(request.status);
-    const todo: Todo = Todo.create({ title, status }, new UniqueEntityID());
+    const todo: Todo = Todo.create({ title, status });
     await this.todoRepository.save(todo);
     //TODO implement errors
   }
