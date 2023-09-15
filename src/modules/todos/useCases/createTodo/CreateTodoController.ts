@@ -18,7 +18,7 @@ export class CreateTodoController extends BaseController {
       await this.useCase.execute(dto);
       response.status(httpStatus.CREATED).json("OK");
     } catch (err) {
-      console.log(err);
+      response.status(httpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 }

@@ -21,9 +21,9 @@ export class DeleteTodoController extends BaseController {
       await this.useCase.execute(dto);
       const event = new TodoEventEmitter(dto.id);
       domainEventPublisher.emit("Publish", event, "deleted");
-      response.status(httpStatus.OK).json("Deleted OK");
+      response.status(httpStatus.CREATED).json("Deleted OK");
     } catch (err) {
-      console.log(err);
+      response.status(httpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 }
