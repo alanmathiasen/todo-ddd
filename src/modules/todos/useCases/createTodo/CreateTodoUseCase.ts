@@ -7,7 +7,7 @@ import { TodoDTO } from "../../dtos/TodoDTO";
 import httpStatus from "http-status";
 
 export class CreateTodoUseCase {
-  constructor(private todoRepository: ITodoRepository) {}
+  constructor(private todoRepository: Partial<ITodoRepository>) {}
 
   async execute(request: TodoDTO): Promise<any> {
     try {
@@ -20,7 +20,7 @@ export class CreateTodoUseCase {
         request.status === "OPEN" ? TodoStatus.OPEN : TodoStatus.COMPLETED;
 
       const todo: Todo = new Todo(id, title, status);
-      await this.todoRepository.save(todo);
+      await this.todoRepository.save!(todo);
       console.log(todo);
     } catch (error) {
       throw new Error(httpStatus.INTERNAL_SERVER_ERROR.toString());

@@ -28,4 +28,7 @@ export class TodoRepositoryMock implements ITodoRepository {
   delete = jest.fn(async (id: TodoId): Promise<void> => {
     this.todos.delete(id.getValue());
   });
+  deleteAll = jest.fn(async (): Promise<void> => {
+    this.todos.clear();
+  })
 }
