@@ -1,4 +1,4 @@
-import { Todo } from "../../../src/modules/todos/domain/Todo";
+import { Todo } from "../../../src/modules/todos/domain/entities/todoEntitie";
 import { TodoId } from "../../../src/modules/todos/domain/TodoId";
 import { ITodoRepository } from "../../../src/modules/todos/repos/ITodoRepository";
 

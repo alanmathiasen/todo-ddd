@@ -1,4 +1,4 @@
-import { Todo } from "../domain/Todo";
+import { Todo } from "../domain/entities/todoEntitie";
 import { TodoId } from "../domain/TodoId";
 
 export interface ITodoRepository {
@@ -7,4 +7,5 @@ export interface ITodoRepository {
   delete(id: TodoId): Promise<void>;
   findById(id: TodoId): Promise<Todo>;
   findAll(): Promise<Todo[]>;
+  deleteAll(): Promise<void>;
 }

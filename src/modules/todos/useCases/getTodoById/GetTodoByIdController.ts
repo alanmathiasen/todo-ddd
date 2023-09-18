@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { BaseController } from "../../../../shared/infra/http/models/Controller";
-import { TodoDTO } from "../../dtos/TodoDTO";
 import { GetTodoByIdUseCase } from "./GetTodoByIdUseCase";
 import httpStatus from "http-status";
 import { TodoId } from "../../domain/TodoId";

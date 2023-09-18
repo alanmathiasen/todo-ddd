@@ -1,5 +1,5 @@
 import { ITodoRepository } from "../../repos/ITodoRepository";
-import { Todo } from "../../domain/Todo";
+import { Todo } from "../../domain/entities/todoEntitie";
 import { TodoId } from "../../domain/TodoId";
 import { TodoStatus } from "../../domain/TodoStatus";
 import { TodoTitle } from "../../domain/TodoTitle";

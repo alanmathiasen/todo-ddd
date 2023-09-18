@@ -1,6 +1,6 @@
-import { TodoId } from "./TodoId";
-import { TodoTitle } from "./TodoTitle";
-import { TodoStatus } from "./TodoStatus";
+import { TodoId } from "../TodoId";
+import { TodoTitle } from "../TodoTitle";
+import { TodoStatus } from "../TodoStatus";
 
 export class Todo {
   private id: TodoId;

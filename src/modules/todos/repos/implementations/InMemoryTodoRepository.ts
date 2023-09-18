@@ -1,5 +1,5 @@
 import { ITodoRepository } from "../ITodoRepository";
-import { Todo } from "../../domain/Todo";
+import { Todo } from "../../domain/entities/todoEntitie";
 import { TodoId } from "../../domain/TodoId";
 
 export class InMemoryTodoRepository implements ITodoRepository {
@@ -41,6 +41,11 @@ export class InMemoryTodoRepository implements ITodoRepository {
 
   async delete(id: TodoId): Promise<void> {
     this.todos.delete(id.getValue());
+    return Promise.resolve();
+  }
+
+  async deleteAll(): Promise<void> {
+    this.todos.clear();
     return Promise.resolve();
   }
 }
