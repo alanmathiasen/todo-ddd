@@ -1,23 +1,20 @@
-import { TodoId } from "./TodoId";
 import { TodoTitle } from "./TodoTitle";
 import { TodoStatus, TodoStatusValues } from "./TodoStatus";
-import { Entity } from "../../../shared/domain/Entity";
 import { UniqueEntityID } from "../../../shared/domain/UniqueEntityID";
 import { AggregateRoot } from "../../../shared/domain/AggregateRoot";
+import { Task } from "./Task";
+import { TodoCreated } from "./events/todoCreated";
 
 export interface TodoProps {
   title: TodoTitle;
   status: TodoStatus;
+  tasks?: Task[];
 }
 
 export class Todo extends AggregateRoot<TodoProps> {
   constructor(props: TodoProps, id?: UniqueEntityID) {
     super(props, id);
   }
-
-  // public getId(): UniqueEntityID {
-  //   return TodoId.create(this._id).getValue();
-  // }
 
   get title(): TodoTitle {
     return this.props.title;
@@ -36,6 +33,9 @@ export class Todo extends AggregateRoot<TodoProps> {
   }
 
   public static create(props: TodoProps, id?: UniqueEntityID): Todo {
-    return new Todo(props, id);
+    const todo = new Todo(props, id);
+    const todoCreatedEvent = new TodoCreated(todo);
+    todo.addDomainEvent(todoCreatedEvent);
+    return todo;
   }
 }
