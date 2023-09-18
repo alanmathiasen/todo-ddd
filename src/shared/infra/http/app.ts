@@ -1,5 +1,6 @@
 import express from "express";
 import { v1Router } from "./api/v1";
+require('dotenv').config({ path: `.env` });
 
 const app = express();
 
