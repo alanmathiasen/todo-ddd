@@ -1,9 +1,9 @@
-import { ITodoRepository } from "../../repos/ITodoRepository";
-import { Todo } from "../../domain/entities/todoEntitie";
-import { TodoId } from "../../domain/TodoId";
-import { TodoStatus } from "../../domain/TodoStatus";
-import { TodoTitle } from "../../domain/TodoTitle";
-import { TodoDTO } from "../../dtos/TodoDTO";
+import { ITodoRepository } from "../../../repos/ITodoRepository";
+import { Todo } from "../../../domain/entities/todoEntitie";
+import { TodoId } from "../../../domain/TodoId";
+import { TodoStatus } from "../../../domain/TodoStatus";
+import { TodoTitle } from "../../../domain/TodoTitle";
+import { TodoDTO } from "../../../dtos/TodoDTO";
 
 export class UpdateTodoUseCase {
   constructor(private todoRepository: ITodoRepository) {}

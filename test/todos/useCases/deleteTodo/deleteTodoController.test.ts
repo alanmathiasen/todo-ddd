@@ -1,7 +1,7 @@
-import { CreateTodoUseCase } from "../../../../src/modules/todos/useCases/createTodo/CreateTodoUseCase";
-import { CreateTodoController } from "../../../../src/modules/todos/useCases/createTodo/CreateTodoController";
-import { DeleteTodoUseCase } from "../../../../src/modules/todos/useCases/deleteTodo/DeleteTodoUseCase";
-import { DeleteTodoController } from "../../../../src/modules/todos/useCases/deleteTodo/DeleteTodoController";
+import { CreateTodoUseCase } from "../../../../src/modules/todos/useCases/memory/createTodoInMemory/CreateTodoUseCase";
+import { CreateTodoController } from "../../../../src/modules/todos/useCases/memory/createTodoInMemory/CreateTodoController";
+import { DeleteTodoUseCase } from "../../../../src/modules/todos/useCases/memory/deleteTodoInMemory/DeleteTodoUseCase";
+import { DeleteTodoController } from "../../../../src/modules/todos/useCases/memory/deleteTodoInMemory/DeleteTodoController";
 import { TodoRepositoryMock } from "../MockTodoRepositoryClass";
 
 describe("DeleteTodo", () => {

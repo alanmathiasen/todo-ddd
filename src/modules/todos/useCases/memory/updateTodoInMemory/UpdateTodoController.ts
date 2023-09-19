@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import { BaseController } from "../../../../shared/infra/http/models/Controller";
+import { BaseController } from "../../../../../shared/infra/http/models/Controller";
 import { UpdateTodoUseCase } from "./UpdateTodoUseCase";
 import httpStatus from "http-status";
-import { TodoValidator } from "../../dtos/TodoValidator";
-import { TodoEventEmitter } from "../../domain/events/TodoEventEmitter";
-import { domainEventPublisher } from "../../infra/events/DomainEventPublisher";
+import { TodoValidator } from "../../../dtos/TodoValidator";
+import { TodoEventEmitter } from "../../../domain/events/TodoEventEmitter";
+import { domainEventPublisher } from "../../../infra/events/DomainEventPublisher";
 
 export class UpdateTodoController extends BaseController {
   constructor(private useCase: UpdateTodoUseCase) {

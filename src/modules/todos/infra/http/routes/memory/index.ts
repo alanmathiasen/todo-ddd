@@ -1,8 +1,11 @@
 import express from "express";
-import { createTodoController } from "../../../useCases/createTodo";
-import { getTodoByIdController } from "../../../useCases/getTodoById";
-import { updateTodoController } from "../../../useCases/updateTodo";
-import { deleteTodoController, deleteAllController } from "../../../useCases/deleteTodo";
+import { createTodoController } from "../../../../useCases/memory/createTodoInMemory";
+import { getTodoByIdController } from "../../../../useCases/memory/getTodoByIdInMemory";
+import { updateTodoController } from "../../../../useCases/memory/updateTodoInMemory";
+import {
+  deleteTodoController,
+  deleteAllController,
+} from "../../../../useCases/memory/deleteTodoInMemory";
 
 const router = express.Router();
 

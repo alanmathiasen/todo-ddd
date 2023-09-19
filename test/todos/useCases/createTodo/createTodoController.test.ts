@@ -1,5 +1,5 @@
-import { CreateTodoUseCase } from "../../../../src/modules/todos/useCases/createTodo/CreateTodoUseCase";
-import { CreateTodoController } from "../../../../src/modules/todos/useCases/createTodo/CreateTodoController";
+import { CreateTodoUseCase } from "../../../../src/modules/todos/useCases/memory/createTodoInMemory/CreateTodoUseCase";
+import { CreateTodoController } from "../../../../src/modules/todos/useCases/memory/createTodoInMemory/CreateTodoController";
 import { TodoRepositoryMock } from "../MockTodoRepositoryClass";
 
 describe("CreateTodo", () => {

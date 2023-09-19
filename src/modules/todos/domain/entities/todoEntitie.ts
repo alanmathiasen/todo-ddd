@@ -32,4 +32,9 @@ export class Todo {
   public reopen(): void {
     this.status = TodoStatus.OPEN;
   }
+
+  static fromDocument(doc: any): Todo {
+    let todo = new Todo(doc.id, doc.title, doc.status);
+    return todo;
+  }
 }

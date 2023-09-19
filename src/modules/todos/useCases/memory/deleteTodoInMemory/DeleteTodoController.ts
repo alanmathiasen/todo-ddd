@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import { BaseController } from "../../../../shared/infra/http/models/Controller";
-import { TodoDTO } from "../../dtos/TodoDTO";
+import { BaseController } from "../../../../../shared/infra/http/models/Controller";
+import { TodoDTO } from "../../../dtos/TodoDTO";
 import { DeleteTodoUseCase } from "./DeleteTodoUseCase";
 import httpStatus from "http-status";
-import { TodoEventEmitter } from "../../domain/events/TodoEventEmitter";
-import { domainEventPublisher } from "../../infra/events/DomainEventPublisher";
+import { TodoEventEmitter } from "../../../domain/events/TodoEventEmitter";
+import { domainEventPublisher } from "../../../infra/events/DomainEventPublisher";
 
 export class DeleteTodoController extends BaseController {
   constructor(private useCase: DeleteTodoUseCase) {

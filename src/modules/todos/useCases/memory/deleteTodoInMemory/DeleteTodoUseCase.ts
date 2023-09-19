@@ -1,6 +1,6 @@
-import { ITodoRepository } from "../../repos/ITodoRepository";
-import { TodoId } from "../../domain/TodoId";
-import { TodoDTO } from "../../dtos/TodoDTO";
+import { ITodoRepository } from "../../../repos/ITodoRepository";
+import { TodoId } from "../../../domain/TodoId";
+import { TodoDTO } from "../../../dtos/TodoDTO";
 
 export class DeleteTodoUseCase {
   constructor(private todoRepository: Partial<ITodoRepository>) {}

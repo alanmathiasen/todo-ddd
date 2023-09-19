@@ -1,4 +1,4 @@
-import { todoRepo } from "../../repos";
+import { todoRepo } from "../../../repos";
 import { UpdateTodoController } from "./UpdateTodoController";
 import { UpdateTodoUseCase } from "./UpdateTodoUseCase";
 

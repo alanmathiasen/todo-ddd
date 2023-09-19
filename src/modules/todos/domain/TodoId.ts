@@ -1,3 +1,5 @@
+import { Todo } from "../domain/entities/todoEntitie";
+
 export class TodoId {
   private readonly value: string;
 
@@ -13,4 +15,9 @@ export class TodoId {
   public static create(value: string): TodoId {
     return new TodoId(value);
   }
+
+  // public fromDocument(doc: any): Todo {
+  //   let todo = new Todo(doc.id, doc.title, doc.status);
+  //   return todo;
+  // }
 }

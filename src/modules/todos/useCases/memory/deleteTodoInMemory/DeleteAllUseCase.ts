@@ -1,4 +1,4 @@
-import { ITodoRepository } from "../../repos/ITodoRepository";
+import { ITodoRepository } from "../../../repos/ITodoRepository";
 
 export class DeleteAllUseCase {
   constructor(private todoRepository: Partial<ITodoRepository>) {}
@@ -6,7 +6,7 @@ export class DeleteAllUseCase {
   async execute(): Promise<any> {
     await this.todoRepository.deleteAll!();
 
-    console.log('Todo borrado');
+    console.log("Todo borrado");
     //TODO implement errors
   }
 }

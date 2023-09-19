@@ -1,14 +1,14 @@
-import { CreateTodoUseCase } from "../../../../src/modules/todos/useCases/createTodo/CreateTodoUseCase";
-import { CreateTodoController } from "../../../../src/modules/todos/useCases/createTodo/CreateTodoController";
-import { DeleteAllUseCase } from "../../../../src/modules/todos/useCases/deleteTodo/DeleteAllUseCase";
-import { DeleteAllController } from "../../../../src/modules/todos/useCases/deleteTodo/DeleteAllController";
+import { CreateTodoUseCase } from "../../../../src/modules/todos/useCases/memory/createTodoInMemory/CreateTodoUseCase";
+import { CreateTodoController } from "../../../../src/modules/todos/useCases/memory/createTodoInMemory/CreateTodoController";
+import { DeleteAllUseCase } from "../../../../src/modules/todos/useCases/memory/deleteTodoInMemory/DeleteAllUseCase";
+import { DeleteAllController } from "../../../../src/modules/todos/useCases/memory/deleteTodoInMemory/DeleteAllController";
 import { TodoRepositoryMock } from "../MockTodoRepositoryClass";
 
 describe("DeleteTodo", () => {
   let CreateUseCase: CreateTodoUseCase;
   let CreateController: CreateTodoController;
   let deleteAllController: DeleteAllController;
-  let deleteAllUseCase: DeleteAllUseCase
+  let deleteAllUseCase: DeleteAllUseCase;
   let repo: TodoRepositoryMock;
   let mockRequest: any;
   let mockResponse: any;
@@ -49,5 +49,4 @@ describe("DeleteTodo", () => {
     expect(mockResponse.status).toHaveBeenCalledWith(500);
     expect(mockResponse.json).toHaveBeenCalledWith("Deleted OK");
   });
-
 });

@@ -1,0 +1,18 @@
+import express from 'express'
+import { getMongoTodoController, getMongoTodoByIdController } from '../../../../useCases/mongoDB/getTodoInMongo';
+import { postMongoTodoController } from '../../../../useCases/mongoDB/postTodoInMongo';
+import { putMongoTodoController } from '../../../../useCases/mongoDB/putTodoInMongo';
+import { deleteMongoTodoByIdController } from '../../../../useCases/mongoDB/deleteTodoInMongo';
+
+const router = express.Router();
+
+router.get('/', getMongoTodoController);
+router.get('/:id', getMongoTodoByIdController);
+
+router.post('/', postMongoTodoController);
+
+router.put('/:id', putMongoTodoController);
+
+router.delete('/:id', deleteMongoTodoByIdController);
+
+export { router };

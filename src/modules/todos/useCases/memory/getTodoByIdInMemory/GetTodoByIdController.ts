@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { BaseController } from "../../../../shared/infra/http/models/Controller";
+import { BaseController } from "../../../../../shared/infra/http/models/Controller";
 import { GetTodoByIdUseCase } from "./GetTodoByIdUseCase";
 import httpStatus from "http-status";
-import { TodoId } from "../../domain/TodoId";
+import { TodoId } from "../../../domain/TodoId";
 
 export class GetTodoByIdController extends BaseController {
   constructor(private useCase: GetTodoByIdUseCase) {

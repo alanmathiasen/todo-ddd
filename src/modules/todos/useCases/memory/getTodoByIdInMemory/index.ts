@@ -1,4 +1,4 @@
-import { todoRepo } from "../../repos";
+import { todoRepo } from "../../../repos";
 import { GetTodoByIdController } from "./GetTodoByIdController";
 import { GetTodoByIdUseCase } from "./GetTodoByIdUseCase";
 

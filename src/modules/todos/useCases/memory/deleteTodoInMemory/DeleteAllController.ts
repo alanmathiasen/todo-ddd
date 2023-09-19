@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { BaseController } from "../../../../shared/infra/http/models/Controller";
+import { BaseController } from "../../../../../shared/infra/http/models/Controller";
 import { DeleteAllUseCase } from "./DeleteAllUseCase";
 import httpStatus from "http-status";
-import { TodoEventEmitter } from "../../domain/events/TodoEventEmitter";
-import { domainEventPublisher } from "../../infra/events/DomainEventPublisher";
+import { TodoEventEmitter } from "../../../domain/events/TodoEventEmitter";
+import { domainEventPublisher } from "../../../infra/events/DomainEventPublisher";
 
 export class DeleteAllController extends BaseController {
   constructor(private useCase: Partial<DeleteAllUseCase>) {
