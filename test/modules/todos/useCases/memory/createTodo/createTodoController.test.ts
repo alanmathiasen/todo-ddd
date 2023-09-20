@@ -1,6 +1,6 @@
-import { CreateTodoUseCase } from "../../../../src/modules/todos/useCases/memory/createTodoInMemory/CreateTodoUseCase";
-import { CreateTodoController } from "../../../../src/modules/todos/useCases/memory/createTodoInMemory/CreateTodoController";
-import { TodoRepositoryMock } from "../MockTodoRepositoryClass";
+import { CreateTodoUseCase } from "../../../../../../src/modules/todos/useCases/memory/createTodoInMemory/CreateTodoUseCase";
+import { CreateTodoController } from "../../../../../../src/modules/todos/useCases/memory/createTodoInMemory/CreateTodoController";
+import { TodoRepositoryMock } from "../../../../../todos/useCases/MockTodoRepositoryClass";
 
 describe("CreateTodo", () => {
   let useCase: CreateTodoUseCase;

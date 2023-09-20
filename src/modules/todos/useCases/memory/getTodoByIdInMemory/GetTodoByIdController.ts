@@ -16,12 +16,7 @@ export class GetTodoByIdController extends BaseController {
 
     try {
       const todo = await this.useCase.execute(todoId);
-      const thisIsWrong = {
-        id: todo.getId().getValue(),
-        title: todo.getTitle().getValue(),
-        status: todo.status,
-      };
-      response.status(httpStatus.OK).json(thisIsWrong);
+      response.status(httpStatus.OK);
     } catch (err) {
       console.log(err);
     }

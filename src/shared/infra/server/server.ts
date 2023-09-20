@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
 
-const connectDB = async () => {
+export const connectDB = async () => {
   let address: string = process.env.MONGO_CNN || '';
+  console.log(address);
   if (!address) {
     throw new Error('Please define the MONGO_CNN environment variable');
   }
@@ -13,4 +14,7 @@ const connectDB = async () => {
   }
 };
 
-connectDB();
+export const disconnectDB = async () => {
+  await mongoose.disconnect();
+};
+

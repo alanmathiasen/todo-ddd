@@ -1,8 +1,8 @@
-import { CreateTodoUseCase } from "../../../../src/modules/todos/useCases/memory/createTodoInMemory/CreateTodoUseCase";
-import { CreateTodoController } from "../../../../src/modules/todos/useCases/memory/createTodoInMemory/CreateTodoController";
-import { DeleteTodoUseCase } from "../../../../src/modules/todos/useCases/memory/deleteTodoInMemory/DeleteTodoUseCase";
-import { DeleteTodoController } from "../../../../src/modules/todos/useCases/memory/deleteTodoInMemory/DeleteTodoController";
-import { TodoRepositoryMock } from "../MockTodoRepositoryClass";
+import { CreateTodoUseCase } from "../../../../../../src/modules/todos/useCases/memory/createTodoInMemory/CreateTodoUseCase";
+import { CreateTodoController } from "../../../../../../src/modules/todos/useCases/memory/createTodoInMemory/CreateTodoController";
+import { DeleteTodoUseCase } from "../../../../../../src/modules/todos/useCases/memory/deleteTodoInMemory/DeleteTodoUseCase";
+import { DeleteTodoController } from "../../../../../../src/modules/todos/useCases/memory/deleteTodoInMemory/DeleteTodoController";
+import { TodoRepositoryMock } from "../../../../../todos/useCases/MockTodoRepositoryClass";
 
 describe("DeleteTodo", () => {
   let CreateUseCase: CreateTodoUseCase;

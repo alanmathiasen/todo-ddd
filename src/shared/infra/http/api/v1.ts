@@ -9,6 +9,6 @@ v1Router.get("/", (req, res) => {
 });
 
 v1Router.use("/todos", memoryRouter);
-v1Router.use("/todos", mongoRouter);
+v1Router.use("/mongotodos", mongoRouter);
 
 export { v1Router };
