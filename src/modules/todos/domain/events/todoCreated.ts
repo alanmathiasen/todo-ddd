@@ -11,6 +11,7 @@ export class TodoCreated implements IDomainEvent {
     this.ocurrenceDate = new Date();
     this.eventName = "TodoCreated";
     this.todo = todo;
+    console.log(this.constructor.name, "event created!");
   }
 
   getAggregateId(): UniqueEntityID {

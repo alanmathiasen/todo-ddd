@@ -1,30 +1,43 @@
 export interface IDomainEvent {
-  eventName: string;
-  ocurrenceDate: Date;
+    eventName: string;
+    ocurrenceDate: Date;
 }
 
-export class DomainEventHandler {
-  private handlers: { [key: string]: Array<(event: IDomainEvent) => void> } = {};
+export class DomainEvents {
+    private static handlers: {
+        [key: string]: Array<(event: IDomainEvent) => void>;
+    } = {};
 
-  public register(eventName: string, handler: (event: IDomainEvent) => void): void {
-    if (!this.handlers[eventName]) {
-      this.handlers[eventName] = [];
+    public static register<T>(
+        eventName: string,
+        handler: (event: IDomainEvent) => void
+    ): void {
+        console.log(eventName, " registered!");
+        if (!this.handlers[eventName]) {
+            this.handlers[eventName] = [];
+        }
+        this.handlers[eventName].push(handler);
     }
-    this.handlers[eventName].push(handler);
-  }
 
-  public unregister(eventName: string, handler: (event: IDomainEvent) => void): void {
-    if (!this.handlers[eventName]) {
-      return;
+    public static unregister(
+        eventName: string,
+        handler: (event: IDomainEvent) => void
+    ): void {
+        if (!this.handlers[eventName]) {
+            return;
+        }
+        this.handlers[eventName] = this.handlers[eventName].filter(
+            (h) => h !== handler
+        );
     }
-    this.handlers[eventName] = this.handlers[eventName].filter((h) => h !== handler);
-  }
 
-  public dispatch(event: IDomainEvent): void {
-    console.log("dispatching");
-    if (!this.handlers[event.eventName]) {
-      return;
+    public static dispatch(event: IDomainEvent): void {
+        if (!this.handlers[event.eventName]) {
+            return;
+        }
+        console.log("dispatching event: ", event.eventName);
+
+        console.log(this.handlers[event.eventName].length);
+        this.handlers[event.eventName].forEach((handler) => handler(event));
     }
-    this.handlers[event.eventName].forEach((handler) => handler(event));
-  }
 }

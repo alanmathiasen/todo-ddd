@@ -1,15 +1,16 @@
 import { UniqueEntityID } from "../../../shared/domain/UniqueEntityID";
 import { ValueObject } from "../../../shared/domain/ValueObject";
 
-interface TodoIdProps {
+interface UserIdProps {
     value: UniqueEntityID;
 }
-export class TodoId extends ValueObject<TodoIdProps> {
-    private constructor(props: TodoIdProps) {
+
+export class UserId extends ValueObject<UserIdProps> {
+    private constructor(props: UserIdProps) {
         super(props);
     }
 
-    getStringValue(): string {
+    getStringValue() {
         return this.props.value.toString();
     }
 
@@ -17,7 +18,7 @@ export class TodoId extends ValueObject<TodoIdProps> {
         return this.props.value;
     }
 
-    public static create(value: UniqueEntityID): TodoId {
-        return new TodoId({ value });
+    static create(id: UniqueEntityID): UserId {
+        return new UserId({ value: id });
     }
 }
