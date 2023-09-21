@@ -28,6 +28,10 @@ export class InMongoTodoRepository implements ITodoRepository {
     return Promise.resolve([]);
   }
 
+  async find(): Promise<Todo[]> {
+    return Promise.resolve([]);
+  }
+
   async delete(id: TodoId): Promise<void> {}
 
   async deleteAll(): Promise<void> {}

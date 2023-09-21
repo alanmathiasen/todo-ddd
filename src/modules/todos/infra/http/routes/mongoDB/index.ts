@@ -1,6 +1,6 @@
 import express from "express";
 import {
-  /* getMongoTodoController,*/
+  getMongoTodoController,
   getMongoTodoByIdController,
 } from "../../../../useCases/mongoDB/getTodoInMongo";
 // import { postMongoTodoController } from "../../../../useCases/mongoDB/postTodoInMongo";
@@ -9,7 +9,7 @@ import {
 
 const router = express.Router();
 
-// router.get("/", getMongoTodoController);
+router.get("/", (req,res) => getMongoTodoController.execute(req,res));
 router.get("/:id", (req,res) => getMongoTodoByIdController.execute(req,res));
 
 // router.post("/", postMongoTodoController);
