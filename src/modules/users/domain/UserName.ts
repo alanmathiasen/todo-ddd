@@ -1,18 +1,21 @@
 import { ValueObject } from "../../../shared/domain/ValueObject";
 
 export interface UserNameProps {
-    value: string;
+  value: string;
 }
 export class UserName extends ValueObject<UserNameProps> {
-    private constructor(props: UserNameProps) {
-        super(props);
-    }
+  private constructor(props: UserNameProps) {
+    super(props);
+  }
 
-    get value() {
-        return this.props.value;
-    }
+  get value() {
+    return this.props.value;
+  }
 
-    static create(value: string): UserName {
-        return new UserName({ value });
+  static create(value: string): UserName {
+    if (value === undefined) {
+      throw new Error("Username is required");
     }
+    return new UserName({ value });
+  }
 }

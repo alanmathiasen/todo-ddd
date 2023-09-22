@@ -11,14 +11,12 @@ export class CreateTodoController extends BaseController {
 
   async executeImpl(request: Request, response: Response): Promise<void> {
     const dto: TodoDTO = request.body as TodoDTO;
-
     // TODO sanitizations and validations
-
     try {
       await this.useCase.execute(dto);
-      response.status(httpStatus.CREATED).json("OK");
+      this.created(response);
     } catch (err) {
-      console.log(err);
+      this.fail(response, "error creating todo" + err);
     }
   }
 }

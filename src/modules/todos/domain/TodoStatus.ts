@@ -1,4 +1,5 @@
 import { ValueObject } from "../../../shared/domain/ValueObject";
+import { Todo } from "./Todo";
 
 export enum TodoStatusValues {
   OPEN = "OPEN",
@@ -19,6 +20,7 @@ export class TodoStatus extends ValueObject<TodoStatusProps> {
   }
 
   public static create(value: TodoStatusValues): TodoStatus {
+    if (!Object.values(TodoStatusValues).includes(value)) throw new Error("Invalid todo status");
     return new TodoStatus({ value });
   }
 }

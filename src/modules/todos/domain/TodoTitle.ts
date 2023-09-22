@@ -14,6 +14,7 @@ export class TodoTitle extends ValueObject<TodoTitleProps> {
   }
 
   public static create(value: string): TodoTitle {
+    if (value === undefined) throw new Error("Title is required");
     return new TodoTitle({ value });
   }
 }
