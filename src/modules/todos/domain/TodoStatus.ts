@@ -2,6 +2,7 @@ import { ValueObject } from "../../../shared/domain/ValueObject";
 
 export enum TodoStatusValues {
   OPEN = "OPEN",
+  IN_PROGRESS = "IN PROGRESS",
   COMPLETED = "COMPLETED",
 }
 export interface TodoStatusProps {
