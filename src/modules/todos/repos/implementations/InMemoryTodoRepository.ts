@@ -2,6 +2,7 @@ import { ITodoRepository } from "../ITodoRepository";
 import { Todo } from "../../domain/entities/todoEntitie";
 import { TodoId } from "../../domain/TodoId";
 
+
 export class InMemoryTodoRepository implements ITodoRepository {
   private todos: Map<string, Todo>;
 
@@ -47,5 +48,9 @@ export class InMemoryTodoRepository implements ITodoRepository {
   async deleteAll(): Promise<void> {
     this.todos.clear();
     return Promise.resolve();
+  }
+
+  async find(): Promise<Todo[]> {
+    return Promise.resolve(Array.from(this.todos.values()));
   }
 }

@@ -2,17 +2,18 @@ import httpStatus from "http-status";
 import { BaseController } from "../../../../../shared/infra/http/models/Controller";
 import { Todo } from "../../../domain/entities/todoEntitie";
 import { GetMongoTodoUseCase } from "./getMongoTodoUseCase";
+import { Request, Response } from "express";
+import { TodoDTO } from "../../../dtos/TodoDTO";
 
 export class GetMongoTodoController extends BaseController {
   constructor(private useCase: GetMongoTodoUseCase) {
     super();
   }
 
-  async executeImpl(request: any, response: any): Promise<void> {
+  async executeImpl(request: Request, response: Response): Promise<void> {
     try {
-      const { id, title, status } = request.body;
-      const todoId = new Todo(id, title, status);
-      const todo = await this.useCase.execute(todoId);
+      const todoData = request.body as TodoDTO;
+      const todo = await this.useCase.execute(todoData);
       response.status(httpStatus.OK).json(todo);
     } catch (error) {
       console.log(error);

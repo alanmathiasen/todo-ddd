@@ -2,6 +2,7 @@ import { ITodoRepository } from "../ITodoRepository";
 import { Todo } from "../../domain/entities/todoEntitie";
 import { TodoId } from "../../domain/TodoId";
 import TodoDB from "../../domain/models/todoModel";
+import { mapDTO } from "../../mappers/mapDTO";
 
 export class InMongoTodoRepository implements ITodoRepository {
   // tengo que implementar todos los metodos
@@ -17,7 +18,7 @@ export class InMongoTodoRepository implements ITodoRepository {
   }
 
   async findById(id: TodoId): Promise<any> {
-    let doc = await TodoDB.findOne({id: id.getValue().toString()});
+    let doc = await TodoDB.findOne({ id: id.getValue().toString() });
     if (!doc) {
       throw new Error("Todo not found");
     }
@@ -28,8 +29,10 @@ export class InMongoTodoRepository implements ITodoRepository {
     return Promise.resolve([]);
   }
 
-  async find(): Promise<Todo[]> {
-    return Promise.resolve([]);
+  async find(todo: Todo): Promise<any[] | undefined> {
+    const todoMapped = mapDTO.toDTO(todo);
+    const found = await TodoDB.find(todoMapped);
+    return Promise.resolve(found);
   }
 
   async delete(id: TodoId): Promise<void> {}

@@ -1,5 +1,7 @@
-import { InMemoryTodoRepository } from "./implementations/InMemoryTodoRepository";
-import { InMongoTodoRepository } from "./implementations/InMongoTodoRepository";
+import {
+  InMemoryTodoRepository,
+  InMongoTodoRepository,
+} from "./implementations";
 
 const todoRepo = new InMemoryTodoRepository();
 const mongoTodoRepo = new InMongoTodoRepository();

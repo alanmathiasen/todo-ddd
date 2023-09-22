@@ -5,7 +5,7 @@ import { TodoStatus } from "../TodoStatus";
 export class Todo {
   private id: TodoId;
   private title: TodoTitle;
-  private status: TodoStatus;
+  public status: TodoStatus;
 
   constructor(id: TodoId, title: TodoTitle, status: TodoStatus) {
     this.id = id;
